@@ -9,7 +9,6 @@
 namespace Tests\App;
 
 use Optimon\Api\Client;
-use Optimon\Api\Exceptions\ResponseException;
 use Xin\Traits\Common\InstanceTrait;
 
 class TestClient extends Client
