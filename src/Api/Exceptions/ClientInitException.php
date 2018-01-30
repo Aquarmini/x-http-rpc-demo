@@ -1,12 +1,16 @@
 <?php
 // +----------------------------------------------------------------------
-// | bootstrap.php [ WE CAN DO IT JUST THINK IT ]
+// | ClientInitException.php [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
 // | Copyright (c) 2016-2017 limingxinleo All rights reserved.
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-require __DIR__ . '/../vendor/autoload.php';
+namespace Optimon\Api\Exceptions;
 
-define('TEST_PATH', __DIR__);
-define('BASE_PATH', dirname(__DIR__));
+use Exception;
+
+class ClientInitException extends Exception
+{
+
+}
