@@ -12,5 +12,4 @@ use Exception;
 
 class ClientInitException extends Exception
 {
-
 }

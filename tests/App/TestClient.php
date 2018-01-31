@@ -20,6 +20,12 @@ class TestClient extends Client
         return TestHandler::getInstance();
     }
 
+    public function init()
+    {
+        $client = $this->getApiHandlerInstance();
+        $client->setEnvironment('dev');
+    }
+
     public function initLogHander()
     {
         $logger = new \Phalcon\Logger\Adapter\File(BASE_PATH . '/info.log');

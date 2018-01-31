@@ -22,6 +22,7 @@ abstract class Client implements ClientInterface
         if (!$handler instanceof Handler) {
             throw new ClientInitException('The Api Handler must instanceof ' . Handler::class);
         }
+        $this->init();
         $this->initLogHander();
     }
 

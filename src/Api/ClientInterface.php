@@ -7,6 +7,7 @@
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
 namespace Optimon\Api;
+
 interface ClientInterface
 {
     /**
@@ -28,4 +29,11 @@ interface ClientInterface
      *  });
      */
     public function initLogHander();
+
+    /**
+     * @desc   初始化
+     * @author limx
+     * @return mixed
+     */
+    public function init();
 }

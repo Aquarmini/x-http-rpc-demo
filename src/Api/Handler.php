@@ -13,10 +13,13 @@ use limx\Support\Arr;
 use Optimon\Api\Exceptions\ResponseException;
 use Psr\Http\Message\ResponseInterface;
 use Xin\Http\Rpc\Client as RpcClient;
+use Xin\Http\Rpc\Exceptions\InitException;
 
 abstract class Handler extends RpcClient
 {
     public $logHandler;
+
+    public $environment;
 
     const RESPONSE_KEY_DATA = 'model';
 
@@ -24,8 +27,36 @@ abstract class Handler extends RpcClient
 
     const RESPONSE_KEY_ERROR_MESSAGE = 'errorMessage';
 
-    protected function beforeExecute($method, $arguments)
+    protected function getBaseUri()
     {
+        if (!isset($this->environment)) {
+            throw new InitException('请使用setEnvironment方法设置$environment变量');
+        }
+
+        if (!isset($this->baseUris)) {
+            throw new InitException('请设置baseUris参数');
+        }
+
+        switch ($this->environment) {
+            case Environment::LOCAL:
+            case Environment::TEST:
+                $this->environment = Environment::DEV;
+                break;
+            case Environment::PRODUCTION:
+                $this->environment = Environment::PRD;
+                break;
+        }
+
+        if (!isset($this->baseUris[$this->environment])) {
+            throw new InitException('PHP API 环境参数设置有误');
+        }
+
+        return $this->baseUris[$this->environment];
+    }
+
+    public function setEnvironment($env)
+    {
+        $this->environment = $env;
     }
 
     public function setLogHandler(callable $callback)

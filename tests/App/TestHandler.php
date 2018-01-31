@@ -8,6 +8,7 @@
 // +----------------------------------------------------------------------
 namespace Tests\App;
 
+use Optimon\Api\Environment;
 use Optimon\Api\Handler;
 use Xin\Traits\Common\InstanceTrait;
 
@@ -15,9 +16,15 @@ class TestHandler extends Handler
 {
     use InstanceTrait;
 
-    protected $baseUri = 'http://api.demo.phalcon.lmx0536.cn';
-
     protected $timeout = 5;
+
+    public $baseUris = [
+        Environment::DEV => 'http://api.demo.phalcon.lmx0536.cn',
+        Environment::QA => 'http://api.demo.phalcon.lmx0536.cn',
+        Environment::PRE => 'http://api.demo.phalcon.lmx0536.cn',
+        Environment::GR => 'http://api.demo.phalcon.lmx0536.cn',
+        Environment::PRD => 'http://api.demo.phalcon.lmx0536.cn',
+    ];
 
     public function test()
     {
